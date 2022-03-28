@@ -31,12 +31,7 @@ const upload = multer({
   fileFilter: multerFilter
 });
 router.get('/', careerController.getApplications);
-router.post(
-  '/',
-  upload.single('resume'),
-  careerController.sendMail,
-  careerController.saveApplication
-);
+router.post('/', upload.single('resume'), careerController.saveApplication);
 router.get('/:id', careerController.getOneApplication);
 router.delete('/:id', careerController.deleteOneApplication);
 

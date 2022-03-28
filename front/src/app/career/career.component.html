@@ -1,0 +1,193 @@
+<app-header></app-header>
+<div class="container register">
+  <div class="row">
+    <div class="col-md-9 register-right">
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="home"
+          role="tabpanel"
+          aria-labelledby="home-tab"
+        >
+          <h3 class="register-heading MT-6">APPLY JOB</h3>
+          <form
+            [formGroup]="form"
+            (ngSubmit)="uploadDetails()"
+            class="row register-form"
+          >
+            <div class="col-md-6">
+              <div class="form-group">
+                <select class="form-control" formControlName="position">
+                  <option class="hidden" value="" disabled [selected]="true">
+                    Position *
+                  </option>
+
+                  <option *ngFor="let st of position" [value]="st">
+                    {{ st }}
+                  </option>
+                </select>
+                <small *ngIf="isValid('position')" class="help-block"
+                  >Required</small
+                >
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Name *"
+                  formControlName="name"
+                />
+                <small *ngIf="isValid('name')" class="help-block"
+                  >Required</small
+                >
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Email Address *"
+                  formControlName="email"
+                />
+                <small *ngIf="isValid('email')" class="help-block"
+                  >Required</small
+                >
+              </div>
+              <div class="form-group">
+                <select class="form-control" formControlName="level">
+                  <option class="hidden" value="" disabled selected>
+                    Level *
+                  </option>
+                  <ng-container *ngFor="let st of level">
+                    <option value="{{ st }}">{{ st }}</option>
+                  </ng-container>
+                </select>
+                <small *ngIf="isValid('level')" class="help-block"
+                  >Required</small
+                >
+              </div>
+              <div
+                [ngStyle]="{ visibility: showLinks ? 'visible' : 'hidden' }"
+                class="form-group"
+              >
+                <textarea
+                  class="form-control"
+                  formControlName="links"
+                  placeholder="portfolio links seperate using comma's..."
+                  cols="30"
+                  rows="1"
+                ></textarea>
+
+                <small *ngIf="isValid('links')" class="help-block"
+                  >Required</small
+                >
+              </div>
+
+              <div class="form-group">
+                <input type="date" class="form-control" formControlName="dob" />
+                <small *ngIf="isValid('dob')" class="help-block"
+                  >Required</small
+                >
+              </div>
+              <div class="form-group flex1">
+                <p
+                  style="font-size: small; margin-left: 30px; margin-top: 10px"
+                >
+                  <span style="color: red">*</span>Upload Resume
+                </p>
+              </div>
+              <!-- <div class="form-group">
+                
+              </div> -->
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input
+                  type="text"
+                  formControlName="medium"
+                  class="form-control"
+                  placeholder="How did you hear about us *"
+                />
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  formControlName="phone"
+                  value="+91"
+                  class="form-control"
+                  placeholder="Your Phone *"
+                />
+              </div>
+              <div class="form-group">
+                <select
+                  class="form-control"
+                  formControlName="highestQualification"
+                >
+                  <option class="hidden" value="" disabled [selected]="true">
+                    Highest Qualification *
+                  </option>
+                  <ng-container *ngFor="let st of highestQualificationArray">
+                    <option value="{{ st }}">{{ st }}</option>
+                  </ng-container>
+                </select>
+                <span *ngIf="isValid('highestQualification')" class="help-block"
+                  >Required</span
+                >
+              </div>
+              <div class="form-group">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Experience*"
+                  formControlName="experience"
+                />
+
+                <span *ngIf="isValid('experience')" class="help-block"
+                  >Required</span
+                >
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="current Company Name*"
+                  formControlName="currentCompanyName"
+                />
+
+                <span *ngIf="isValid('currentCompanyName')" class="help-block"
+                  >Required</span
+                >
+              </div>
+              <div class="form-group">
+                <input
+                  type="number"
+                  class="form-control"
+                  placeholder="Expected salary *"
+                  formControlName="expectedSalary"
+                />
+
+                <span *ngIf="isValid('expectedSalary')" class="help-block"
+                  >Required</span
+                >
+              </div>
+              <div class="form-group">
+                <input
+                  (change)="onChangeResume($event)"
+                  type="file"
+                  accept="application/pdf"
+                  class="form-control"
+                />
+
+                <span *ngIf="isValid('resume')" class="help-block"
+                  >Please upload a file</span
+                >
+              </div>
+
+              <input type="submit" class="btnRegister" value="Apply" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

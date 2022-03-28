@@ -10,7 +10,6 @@ const unlinkAsync = promisify(fs.unlink);
 
 exports.saveApplication = catchAsync(async (req, res, next) => {
   const doc = await Career.create(req.body);
-
   const link = `${process.env.BASE_URL}/pdf`;
   const mailOptions = {
     email: process.env.COMPANY_MAIL,
@@ -32,6 +31,7 @@ exports.saveApplication = catchAsync(async (req, res, next) => {
     }
   });
 });
+
 exports.getApplications = factory.getAll(Career);
 exports.getOneApplication = factory.getOne(Career);
 exports.deleteOneApplication = catchAsync(async (req, res, next) => {
